@@ -1,0 +1,9 @@
+# Development stage
+FROM node:20-slim
+
+RUN npm install -g pnpm
+WORKDIR /app
+
+EXPOSE 5173
+
+CMD sh -c "pnpm install && pnpm dev --host 0.0.0.0"

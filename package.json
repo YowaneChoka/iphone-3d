@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker:dev": "docker compose --profile dev watch",
+    "docker:prod": "docker compose --profile prod up",
+    "docker:down": "docker compose down"
   },
   "dependencies": {
     "react": "^18.3.1",
