@@ -1,0 +1,32 @@
+services:
+  dev:
+    profiles: ["dev"]
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "${VITE_DEV_PORT:-5173}:5173"
+    environment:
+      - VITE_DEV_HOST=${VITE_DEV_HOST:-0.0.0.0}
+      - VITE_DEV_PORT=${VITE_DEV_PORT:-5173}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${VITE_DEV_PORT:-5173}"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - .:/app
+      # Exclude node_modules from volume mounting
+      - /app/node_modules
+    develop:
+      watch:
+        - path: pnpm-lock.yaml
+          action: rebuild
+
+  prod:
+    profiles: ["prod"]
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "${VITE_PROD_PORT:-3000}:80"
