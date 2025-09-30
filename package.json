@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploygh": "npm run build",
+    "predeploygh": "npm run build -- --mode ghpages",
     "deploygh": "gh-pages -d dist",
     "predeploygh:clean": "rm -rf node_modules/.cache/gh-pages",
     "docker:dev": "docker compose --profile dev watch",
